@@ -19,7 +19,7 @@ include 'php/selectTematicas.php';
         <!-- Lado Izquierdo -->
         <div class="lado-izquierdo">
             <div class="menu-botones">
-                <button onclick="location.href='insertar.php'">Insertar Juego</button>
+                <button onclick="location.href='html/login.html'">Insertar Juego</button>
                 <button onclick="location.href='eliminar.php'">Eliminar Juego</button>
             </div>
             <div class="grafico-juegos">
@@ -132,6 +132,7 @@ include 'php/selectTematicas.php';
 
 <!-- Incluye el script externo que usa esos datos -->
 <script src="js/graficoJuegos.js"></script>
+
 <script>
   crearGraficoJuegos(duenos, cantidades);
 </script>

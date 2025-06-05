@@ -1,6 +1,7 @@
 // graficoJuegos.js
 
-// Esta función se puede llamar después de definir los datos en PHP
+//Incluye el script externo que usa esos datos 
+
 function crearGraficoJuegos(duenos, cantidades) {
     const ctx = document.getElementById('graficoJuegos').getContext('2d');
     const grafico = new Chart(ctx, {
