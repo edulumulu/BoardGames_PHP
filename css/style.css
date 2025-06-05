@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f0f0;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    margin: 0;
+}
+
+.contenedor {
+    display: flex;
+    height: calc(100vh - 80px);
+}
+
+/* Lado izquierdo: 1/3 */
+.lado-izquierdo {
+    width: 20%;
+    background-color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    border-right: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.lado-izquierdo button {
+    width: 80%;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Lado derecho: 2/3 */
+.lado-central {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.form-filtros {
+    position: sticky;
+    top: 0;
+    background-color: #f0f0f0; /* o blanco, para que no se vea transparente */
+    z-index: 10;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    flex-shrink: 0;
+}
+
+.form-filtros input,
+.form-filtros select,
+.form-filtros button {
+    padding: 5px;
+    font-size: 14px;
+}
+
+/* Lado derecho con imágenes */
+.lado-derecho-imagenes {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #eee;
+}
+
+.lado-derecho-imagenes img {
+    width: 100%;
+    height: auto;
+    max-height: 32%; /* Para que 3 imágenes quepan con espacio */
+    object-fit: cover;
+}
+
+/* Tabla */
+.tabla-contenedor {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #333;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+.imagen-placeholder {
+    width: 80px;
+    height: 50px;
+    background-color: #ddd;
+    color: #555;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
