@@ -5,7 +5,7 @@ $pass = $_POST['pass'] ?? '';
 
 if(strcasecmp($user, "edu") == 0 && strcasecmp($pass, "edu") == 0){
     // Redirige a formulario_inserccion.php
-    header("Location: ../html/insertarJuego.php");
+    header("Location: ../html/formInsertarJuego.php");
     exit();
 }else{
     ?>

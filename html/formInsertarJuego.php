@@ -15,11 +15,11 @@ include '../php/selectJuegosBase.php';
     <body>
         <h1>Escribe los datos del juego</h1>
 
-        <form action="insertarJuego.php" method="post">
-            <p>Nombre: <input type="text" name="name"></p>
+        <form action="../php/insertarJuego.php" method="post">
+            <p>Nombre: <input type="text" name="nom"></p>
             <p>Diseñador: <input type="text" name="disen"></p>
             <p>Año:</p>
-            <select name="año">
+            <select name="ano">
                 <option value=""></option>
                 <?php
                     $currentYear = date('Y');
@@ -90,7 +90,7 @@ include '../php/selectJuegosBase.php';
             </div>
             <div class="inline-label-select">
                 <label for="dif">Interacción:</label>
-                <select name="int" id="int">
+                <select name="inte" id="inte">
                     <?php for($i = 1 ; $i <= 5 ; $i++){  echo "<option value=\"$i\">$i</option>";  }  ?>
                 </select>
             </div>
