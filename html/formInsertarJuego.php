@@ -15,7 +15,7 @@ include '../php/selectJuegosBase.php';
     <body>
         <h1>Escribe los datos del juego</h1>
 
-        <form action="../php/insertarJuego.php" method="post">
+        <form action="../php/insertarJuego.php" method="post" enctype="multipart/form-data">
             <p>Nombre: <input type="text" name="nom"></p>
             <p>Diseñador: <input type="text" name="disen"></p>
             <p>Año:</p>
@@ -129,7 +129,9 @@ include '../php/selectJuegosBase.php';
             <p>Descripción: </p>
             <textarea name="desc" style="width: 100%; height: 100px;"></textarea>
 
-            <p>Foto: <input type="text" name="name"></p>
+            <p>Foto:
+                <input type="file" name="foto" accept="image/*">
+            </p>
         
         <input type="submit" value="Aceptar">
         </form>

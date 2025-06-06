@@ -106,18 +106,82 @@ if($tem === 'Otra'){
     $tem = $otraTem;
 }
 
+
+// Ruta absoluta para carpeta "fotos"
+$uploadDir = realpath(__DIR__ . '/../../fotos') . '/';
+if ($uploadDir === false) {
+    echo "ERROR: La carpeta fotos no existe o la ruta es inválida.<br>";
+    exit();
+}
+echo "DEBUG: Ruta absoluta de uploadDir: " . $uploadDir . "<br>";
+
+// Verificar que la carpeta existe o crearla
+if (!is_dir($uploadDir)) {
+    echo "DEBUG: La carpeta 'fotos' no existe. Intentando crearla...<br>";
+    if (mkdir($uploadDir, 0755, true)) {
+        echo "DEBUG: Carpeta 'fotos' creada correctamente.<br>";
+    } else {
+        echo "ERROR: No se pudo crear la carpeta para subir imágenes.<br>";
+        exit("ERROR: No se pudo crear la carpeta para subir imágenes.");
+    }
+}
+
+$fotoNombre = '';
+
+if (!empty($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
+    $tmpPath = $_FILES['foto']['tmp_name'];
+    $originalName = $_FILES['foto']['name'];
+    $originalBase = basename($originalName);
+
+    echo "DEBUG: Archivo temporal: " . $tmpPath . "<br>";
+    echo "DEBUG: Nombre original: " . $originalName . "<br>";
+
+    $ext = strtolower(pathinfo($originalBase, PATHINFO_EXTENSION));
+    $allowed = ['jpg', 'jpeg', 'png', 'gif'];
+
+    if (!in_array($ext, $allowed)) {
+        echo "ERROR: Tipo de imagen no permitido: " . $ext . "<br>";
+        html_datos_fallidos("Tipo de imagen no permitido. Solo JPG, PNG o GIF.");
+        exit();
+    }
+
+    $fotoNombre = $originalBase;
+    $destPath = $uploadDir . $fotoNombre;
+
+    echo "DEBUG: Ruta destino para mover archivo: " . $destPath . "<br>";
+
+    if (!move_uploaded_file($tmpPath, $destPath)) {
+        echo "ERROR: Hubo un error al mover el archivo.<br>";
+        html_datos_fallidos("Hubo un error al guardar la imagen.");
+        exit();
+    } else {
+        echo "DEBUG: Imagen movida correctamente.<br>";
+    }
+} else {
+    echo "DEBUG: No se ha subido ningún archivo o hay error en la subida.<br>";
+}
+
+
+
+
+
+
+
+
+
+
 if (strcasecmp($es_expansion, 'no') == 0) {
     $loes = 0;
     $insertar = $conn->prepare("
         INSERT INTO juegos 
           (nombre, disenador, año, numJugMax, numJugMin, duracion, 
-           tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, descripcion) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+           tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, descripcion, imagen) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
     $insertar->bind_param(
-        "ssiiiiiiiiisis", 
+        "ssiiiiiiiiisiss", 
         $nom, $disen, $ano, $maxJug, $minJug, $dur, 
-        $tem, $dif, $estra, $sue, $inte, $dueno, $loes, $desc
+        $tem, $dif, $estra, $sue, $inte, $dueno, $loes, $desc, $fotoNombre
     );
     $insertar->execute();
 
@@ -127,13 +191,13 @@ if (strcasecmp($es_expansion, 'no') == 0) {
         INSERT INTO juegos 
           (nombre, disenador, año, numJugMax, numJugMin, duracion, 
            tematica, dificultad, estrategia, suerte, interaccion, dueno, 
-           expansion, expansionDe, descripcion) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+           expansion, expansionDe, descripcion, imagen) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
     $insertar->bind_param(
-        "ssiiiiiiiiisiss", 
+        "ssiiiiiiiiisisss", 
         $nom, $disen, $ano, $maxJug, $minJug, $dur, 
-        $tem, $dif, $estra, $sue, $inte, $dueno, $loes, $base, $desc
+        $tem, $dif, $estra, $sue, $inte, $dueno, $loes, $base, $desc, $fotoNombre
     );
     $insertar->execute();
 
