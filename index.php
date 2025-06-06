@@ -140,6 +140,16 @@ include 'php/selectTematicas.php';
 <!-- Script para autocompletar los filtros -->
 <script src="js/autoSubmitFiltros.js"></script>
 
+<script>
+  document.querySelectorAll('.fila-juego').forEach(fila => {
+  fila.addEventListener('click', () => {
+    const nombre = fila.dataset.nombre;
+    window.location.href = `php/detalleJuego.php?nombre=${encodeURIComponent(nombre)}`;
+  });
+});
+
+</script>
+
 
 
 </body>

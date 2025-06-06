@@ -1,0 +1,177 @@
+body {
+    position: relative;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    overflow-x: hidden;
+}
+
+.fondo-transparente {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    z-index: -1;
+    pointer-events: none;
+}
+
+
+.contenedor {
+    position: relative;
+    z-index: 1; /* Asegura que está sobre el fondo */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.detalle-juego {
+    background-color: rgba(221, 220, 220, 0.95); /* Fondo blanco casi opaco */
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+    max-width: 1000px;
+    margin: 40px auto;
+    
+    font-family: Arial, sans-serif;
+}
+
+.titulo-juego {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.contenido-juego {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.info {
+    flex: 1 1 60%;
+}
+
+.descripcion {
+    margin-bottom: 20px;
+}
+
+.descripcion h2 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.descripcion p {
+    background-color: rgba(221, 220, 220, 0.95);
+    font-size: 1em;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.datos-basicos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.dato {
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.expansiones {
+    margin-top: 20px;
+}
+
+.expansiones summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: #2a5d9f;
+}
+
+.expansiones ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.imagen {
+    flex: 1 1 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagen img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+}
+
+.grafico {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.grafico canvas {
+    max-width: 500px;
+    margin: auto;
+}
+
+.volver {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.volver a {
+    text-decoration: none;
+    color: white;
+    background-color: #007BFF;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.volver a:hover {
+    background-color: #0056b3;
+}
+
+.tabla-expansiones {
+    background-color: #f5f4f4;
+    margin-top: 30px;
+}
+
+.tabla-expansiones h2 {
+    background-color: rgba(221, 220, 220, 0.95);
+    margin-bottom: 10px;
+}
+
+.tabla-scroll {
+    max-height: 180px; /* aprox. 3 filas */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.tabla-scroll table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-scroll th, .tabla-scroll td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.tabla-scroll tr:last-child td {
+    border-bottom: none;
+}
+
+

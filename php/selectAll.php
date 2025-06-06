@@ -56,13 +56,14 @@ include 'php/db.php';
                         $result = $conn->query($sql);
                         if ($result && $result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td>{$row['nombre']}</td>";
-                                echo "<td>{$row['año']}</td>";
-                                echo "<td>{$row['duracion']} min</td>";
-                                echo "<td>{$row['tematica']}</td>";
+                                echo "<tr class='fila-juego' data-nombre='" . htmlspecialchars($row['nombre'], ENT_QUOTES) . "'>";
+
+                                echo "<td>" . htmlspecialchars($row['nombre']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['año']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['duracion']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['tematica']) . "</td>";
                                 echo "<td>" . ($row['expansion'] ? 'Sí' : 'No') . "</td>";
-                                echo "<td>" . ($row['expansion'] ? $row['expansionDe'] : '-') . "</td>";
+                                echo "<td>" . htmlspecialchars($row['expansionDe']) . "</td>";
                                 if (!empty($row['imagen'])) {
                                     // Asegúrate de que 'imagen' tenga solo el nombre de archivo, no la ruta completa
                                     $rutaImagen = "http://localhost/fotos/" . htmlspecialchars($row['imagen']);
