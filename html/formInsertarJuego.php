@@ -111,7 +111,7 @@ include '../php/selectJuegosBase.php';
                 <label for="dif">Es una expansión:</label>
                 <select name="es_expansion" id="es_expansion" onchange="mostrarJuegoBase(this)">
                     <option value="no">No</option>
-                    <option value="si">Sí</option>
+                    <option value="si">Si</option>
                 </select>
             </div>
 
@@ -120,14 +120,14 @@ include '../php/selectJuegosBase.php';
                 <select name="base" id="juego-base-container" style="display:none;">
                 <?php 
                 foreach ($juegosNoEx as $j): ?>
-                        <option value=" <?= htmlspecialchars($j) ?>" <?= (isset($_GET['nombre']) && $_GET['nombre'] == $d) ? 'selected' : '' ?>>
+                        <option value="<?= htmlspecialchars($j) ?>" <?= (isset($_GET['nombre']) && $_GET['nombre'] == $d) ? 'selected' : '' ?>>
                             <?= htmlspecialchars($j) ?>
                         </option>
                     <?php endforeach; ?>
             </select>
             </div>
             <p>Descripción: </p>
-            <textarea name="descripcion" style="width: 100%; height: 100px;"></textarea>
+            <textarea name="desc" style="width: 100%; height: 100px;"></textarea>
 
             <p>Foto: <input type="text" name="name"></p>
         
