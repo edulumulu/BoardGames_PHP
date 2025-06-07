@@ -162,7 +162,6 @@ if ($nomJuego) {
         }
     });
 </script>
-
         <?php else: ?>
             <p>Juego no encontrado.</p>
         <?php endif; ?>

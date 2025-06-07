@@ -124,33 +124,21 @@ include 'php/selectTematicas.php';
     <!-- Cargar Chart.js desde CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- Define los datos en una etiqueta <script> inline -->
-<script>
-  const duenos = <?= $duenos_json ?>;
-  const cantidades = <?= $cantidades_json ?>;
-</script>
+    <!-- Incluye el script externo que usa esos datos -->
+    <script src="js/graficoJuegos.js"></script>
 
-<!-- Incluye el script externo que usa esos datos -->
-<script src="js/graficoJuegos.js"></script>
+    <!-- Define los datos en una etiqueta <script> inline -->
+    <script>
+        const duenos = <?= $duenos_json ?>;
+        const cantidades = <?= $cantidades_json ?>;
+        crearGraficoJuegos(duenos, cantidades);
+    </script>
 
-<script>
-  crearGraficoJuegos(duenos, cantidades);
-</script>
+    <!-- Script para autocompletar los filtros -->
+    <script src="js/autoSubmitFiltros.js"></script>
 
-<!-- Script para autocompletar los filtros -->
-<script src="js/autoSubmitFiltros.js"></script>
-
-<script>
-  document.querySelectorAll('.fila-juego').forEach(fila => {
-  fila.addEventListener('click', () => {
-    const nombre = fila.dataset.nombre;
-    window.location.href = `php/detalleJuego.php?nombre=${encodeURIComponent(nombre)}`;
-  });
-});
-
-</script>
-
-
+    <script src="js/listenerTabla.js"></script>
+    
 
 </body>
 </html>
