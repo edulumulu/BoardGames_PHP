@@ -135,6 +135,9 @@ h1 {
 .tabla-contenedor {
     flex-grow: 1;
     overflow-y: auto;
+    padding-bottom: 30px;
+    margin-bottom: 15px;
+    min-height: 200px;
 }
 
 table {

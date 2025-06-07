@@ -31,10 +31,11 @@ include 'php/selectTematicas.php';
         <!-- Lado Central -->
         <div class="lado-central">
             <!-- Filtros de Búsqueda -->
-            <form method="GET" class="form-filtros" id="formFiltros">
+            <form method="GET" class="form-filtros" id="formFiltros" onsubmit="return false;">
+
             <div class="filtros-fila">
             <input type="text" name="nombre" placeholder="Nombre" value="<?= isset($_GET['nombre']) ? htmlspecialchars($_GET['nombre']) : '' ?>">
-                <select name="tematica" onchange="this.form.submit()">
+                <select name="tematica">
                     <option value="">Temática</option>
                     <?php foreach ($tematicas as $tema): ?>
                         <option value="<?= htmlspecialchars($tema) ?>" <?= (isset($_GET['tematica']) && $_GET['tematica'] == $tema) ? 'selected' : '' ?>>
@@ -88,10 +89,11 @@ include 'php/selectTematicas.php';
                 </div>
             </form>
             <div class="centrar-boton">
-                <button type="button" onclick="window.location.href='index.php'" class="boton-limpiar">
+                <button type="button" id="btn-limpiar-filtros" class="boton-limpiar">
                     Limpiar filtros
                 </button>
             </div>
+
 
             <!-- Tabla de Resultados -->
             <div class="tabla-contenedor">
@@ -107,10 +109,8 @@ include 'php/selectTematicas.php';
                             <th>Imagen</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php
-                        include "php/selectAll.php";
-                        ?>
+                    <tbody id="tabla-juegos">
+                        <?php include "php/tablaJuegos.php"; ?>
                     </tbody>
                 </table>
             </div>
@@ -121,8 +121,13 @@ include 'php/selectTematicas.php';
             <img src="img/3.JPG" alt="Imagen 3">
         </div>
     </div>
+
     <!-- Cargar Chart.js desde CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                        <!-- Cargar jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
     <!-- Incluye el script externo que usa esos datos -->
     <script src="js/graficoJuegos.js"></script>
@@ -134,11 +139,47 @@ include 'php/selectTematicas.php';
         crearGraficoJuegos(duenos, cantidades);
     </script>
 
-    <!-- Script para autocompletar los filtros -->
-    <script src="js/autoSubmitFiltros.js"></script>
+    <!-- Script listener tabla -->
+    <script>
+        $(document).on('click', '.fila-juego', function () {
+            const nombre = $(this).data('nombre');
+            window.location.href = `php/detalleJuego.php?nombre=${encodeURIComponent(nombre)}`;
+        });
 
-    <script src="js/listenerTabla.js"></script>
+    </script>
+
+    <!-- Scripts para recargar tabla con AJAX -->
+    <script>
+    const form = document.getElementById("formFiltros");
+    const tabla = document.getElementById("tabla-juegos");
+    </script>
+
+    <script src="js/cargarTablaAJAX.js"></script>
+
+    <script>
+    $(document).ready(function () {
+    $('#btn-limpiar-filtros').on('click', function (e) {
+        e.preventDefault();
+
+        // 1. Limpiar los filtros
+        $('#formFiltros')[0].reset(); 
+
+        // 2. Cargar la tabla sin filtros
+        $.ajax({
+            url: 'php/tablaJuegos.php',
+            method: 'GET',
+            success: function (response) {
+                $('#tabla-juegos').html(response);
+            },
+            error: function () {
+                alert("Hubo un error al recargar la tabla.");
+            }
+        });
+    });
+});
+</script>
+
+
     
-
 </body>
 </html>
