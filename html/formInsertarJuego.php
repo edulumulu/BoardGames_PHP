@@ -29,17 +29,17 @@ include '../php/selectJuegosBase.php';
                     ?>
             </select>
         
-            <p>Número máximo de jugadores: </p>
-            <select name="maxJug">
-                <option value=""></option>
-                <?php  for($i = 1 ; $i <= 21 ; $i++){  echo "<option value=\"$i\">$i</option>"; } ?>
-            </select>
             <p>Número mínimo de jugadores: </p>
             <select name="minJug">
                 <option value=""></option>
                 <?php  for($i = 1 ; $i <= 21 ; $i++){  echo "<option value=\"$i\">$i</option>"; } ?>
             </select>
-            
+
+            <p>Número máximo de jugadores: </p>
+            <select name="maxJug">
+                <option value=""></option>
+                <?php  for($i = 1 ; $i <= 21 ; $i++){  echo "<option value=\"$i\">$i</option>"; } ?>
+            </select>
             
             <p>Duración: </p>
             <select name="dur">
